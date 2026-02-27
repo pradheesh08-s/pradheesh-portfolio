@@ -59,6 +59,8 @@ nav {
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--cyber-border);
   z-index: 1000;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: none;
 }
 
 nav .container {
@@ -92,6 +94,27 @@ nav .container {
   display: flex;
   align-items: center;
   gap: 2rem;
+  transition: opacity 0.5s, transform 0.5s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+nav.hide {
+  transform: translateY(-100%);
+  box-shadow: none;
+}
+nav.scrolled {
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+}
+
+.tag {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.tag.animated {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .nav-link {

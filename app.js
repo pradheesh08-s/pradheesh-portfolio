@@ -1,6 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
+
   // Lucide Icons initialization
   lucide.createIcons();
+
+  // Navbar scroll animation
+  let lastScrollY = window.scrollY;
+  const navbar = document.querySelector('nav');
+  let ticking = false;
+  function onScrollNav() {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 10) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+    if (currentScroll > lastScrollY && currentScroll > 100) {
+      navbar.classList.add('hide');
+    } else {
+      navbar.classList.remove('hide');
+    }
+    lastScrollY = currentScroll;
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(onScrollNav);
+      ticking = true;
+    }
+  });
 
   // Mobile Menu Toggle
   const menuToggle = document.querySelector('.menu-toggle');
@@ -28,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Scroll Reveal Animation
   const revealElements = document.querySelectorAll('.reveal');
+  const tagElements = document.querySelectorAll('.tag');
   
   const revealOnScroll = () => {
     const windowHeight = window.innerHeight;
@@ -36,6 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const elementVisible = 150;
       if (elementTop < windowHeight - elementVisible) {
         el.classList.add('active');
+      }
+    });
+    tagElements.forEach(tag => {
+      const tagTop = tag.getBoundingClientRect().top;
+      if (tagTop < windowHeight - 50) {
+        tag.classList.add('animated');
       }
     });
   };
