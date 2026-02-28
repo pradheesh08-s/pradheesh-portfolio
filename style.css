@@ -513,7 +513,16 @@ footer .container {
 @media (max-width: 992px) {
   .hero h1 { font-size: 2.5rem; }
   .about-grid, .cyber-journey-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .skills-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Example CSS */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  body {
+    padding-top: 60px; /* Adjust based on navbar height */
+  }  .skills-grid, .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {

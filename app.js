@@ -119,3 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+// Prevent right-click context menu
+window.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+});
