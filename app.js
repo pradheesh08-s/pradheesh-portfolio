@@ -1,4 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Make the mail tab open Gmail compose
+    const gmailLink = document.getElementById('gmail-link');
+    if (gmailLink) {
+      gmailLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open('https://mail.google.com/mail/?view=cm&fs=1&to=benjaminpradheesh15@gmail.com', '_blank');
+      });
+    }
+  // Smooth animated scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href.length > 1 && document.querySelector(href)) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        const nav = document.querySelector('nav');
+        const navHeight = nav ? nav.offsetHeight : 0;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
 
   // Lucide Icons initialization
   lucide.createIcons();

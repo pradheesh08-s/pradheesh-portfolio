@@ -1,3 +1,85 @@
+/* Responsive Media Queries */
+/* Large desktops */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1400px;
+  }
+  .hero h1 {
+    font-size: 4rem;
+  }
+}
+
+/* Laptops/desktops */
+@media (min-width: 993px) and (max-width: 1399px) {
+  .container {
+    max-width: 1200px;
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 992px) {
+  .container {
+    max-width: 90vw;
+  }
+  .about-grid, .cyber-journey-grid, .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .skills-grid, .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .container {
+    max-width: 98vw;
+    padding: 0 0.5rem;
+  }
+  .hero {
+    padding-top: 7rem;
+  }
+  .hero h1 {
+    font-size: 1.7rem;
+  }
+  .section-title {
+    font-size: 1.25rem;
+  }
+  .about-grid, .cyber-journey-grid, .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .skills-grid, .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .focus-badge {
+    position: static;
+    margin-top: 1rem;
+    box-shadow: none;
+  }
+  .img-container {
+    aspect-ratio: unset;
+    height: 250px;
+  }
+  nav .container {
+    flex-direction: row;
+    padding: 0 0.5rem;
+  }
+  footer .container {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+}
 :root {
   --cyber-primary: #00ff41;
   --cyber-bg: #0a0a0b;
@@ -25,6 +107,33 @@ body {
   font-family: var(--font-sans);
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,255,65,0.07) 0 1px, transparent 1px 80px),
+    repeating-linear-gradient(180deg, rgba(0,255,65,0.07) 0 1px, transparent 1px 80px),
+    radial-gradient(ellipse at 50% 30%, rgba(0,255,65,0.08) 0%, transparent 70%);
+  animation: cyberGridMove 16s linear infinite;
+}
+
+@keyframes cyberGridMove {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 80px 160px, 160px 80px, 0 0; }
+}
+
+main, nav, section, .container {
+  position: relative;
+  z-index: 1;
 }
 
 h1, h2, h3, h4 {
@@ -488,8 +597,11 @@ footer {
 
 footer .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
 }
 
 .social-links {
