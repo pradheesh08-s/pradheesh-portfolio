@@ -139,9 +139,9 @@ body::before {
 
 body.light-mode::before {
   background:
-    repeating-linear-gradient(90deg, rgba(var(--cyber-primary-rgb), 0.04) 0 1px, transparent 1px 80px),
-    repeating-linear-gradient(180deg, rgba(var(--cyber-primary-rgb), 0.04) 0 1px, transparent 1px 80px),
-    radial-gradient(ellipse at 50% 30%, rgba(var(--cyber-primary-rgb), 0.06) 0%, transparent 70%);
+    repeating-linear-gradient(90deg, rgba(15, 23, 42, 0.08) 0 1px, transparent 1px 80px),
+    repeating-linear-gradient(180deg, rgba(15, 23, 42, 0.08) 0 1px, transparent 1px 80px),
+    radial-gradient(ellipse at 50% 30%, rgba(var(--cyber-primary-rgb), 0.14) 0%, transparent 72%);
 }
 
 @keyframes cyberGridMove {
