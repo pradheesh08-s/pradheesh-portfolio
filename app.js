@@ -7,6 +7,78 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open('https://mail.google.com/mail/?view=cm&fs=1&to=benjaminpradheesh15@gmail.com', '_blank');
       });
     }
+
+  const themeEditor = document.getElementById('theme-editor');
+  const themeEditorToggle = document.getElementById('theme-editor-toggle');
+  const themeEditorPanel = document.getElementById('theme-editor-panel');
+  const themeModeButtons = document.querySelectorAll('.theme-mode-btn');
+  const themeColorButtons = document.querySelectorAll('.theme-color-btn');
+
+  const applyThemeMode = (mode) => {
+    document.body.classList.toggle('light-mode', mode === 'light');
+    themeModeButtons.forEach((button) => {
+      button.classList.toggle('active', button.dataset.themeMode === mode);
+    });
+    localStorage.setItem('themeMode', mode);
+  };
+
+  const applyAccentColor = (accent, accentRgb) => {
+    document.documentElement.style.setProperty('--cyber-primary', accent);
+    document.documentElement.style.setProperty('--cyber-primary-rgb', accentRgb);
+    themeColorButtons.forEach((button) => {
+      button.classList.toggle('active', button.dataset.accent === accent);
+    });
+    localStorage.setItem('accentColor', accent);
+    localStorage.setItem('accentRgb', accentRgb);
+  };
+
+  if (themeEditor && themeEditorToggle && themeEditorPanel) {
+    const savedMode = localStorage.getItem('themeMode') || 'dark';
+    const savedAccent = localStorage.getItem('accentColor');
+    const savedAccentRgb = localStorage.getItem('accentRgb');
+
+    applyThemeMode(savedMode);
+
+    const defaultAccentButton = document.querySelector('.theme-color-btn[data-accent="#00ff41"]') || themeColorButtons[0];
+    if (savedAccent && savedAccentRgb) {
+      applyAccentColor(savedAccent, savedAccentRgb);
+    } else if (defaultAccentButton) {
+      applyAccentColor(defaultAccentButton.dataset.accent, defaultAccentButton.dataset.accentRgb);
+    }
+
+    themeEditorToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      themeEditor.classList.toggle('open');
+      themeEditorPanel.setAttribute('aria-hidden', (!themeEditor.classList.contains('open')).toString());
+    });
+
+    themeModeButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyThemeMode(button.dataset.themeMode);
+      });
+    });
+
+    themeColorButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyAccentColor(button.dataset.accent, button.dataset.accentRgb);
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!themeEditor.contains(event.target)) {
+        themeEditor.classList.remove('open');
+        themeEditorPanel.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        themeEditor.classList.remove('open');
+        themeEditorPanel.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
   // Smooth animated scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -102,47 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', revealOnScroll);
   revealOnScroll(); // Initial check
 
-  // Form Handling
-  const contactForm = document.getElementById('contact-form');
-  const formContainer = document.querySelector('.contact-form');
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const name = contactForm.querySelector('input[type="text"]').value;
-      const email = contactForm.querySelector('input[type="email"]').value;
-      const subject = contactForm.querySelector('input[placeholder="Project Inquiry"]').value;
-      const message = contactForm.querySelector('textarea').value;
-      
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn.innerHTML;
-      
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Preparing Email...';
-
-      // Construct mailto link
-      const mailtoLink = `mailto:benjaminpradheesh15@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
-      
-      // Open email client
-      window.location.href = mailtoLink;
-
-      // Show success message after a short delay
-      setTimeout(() => {
-        formContainer.innerHTML = `
-          <div style="text-align: center; padding: 3rem 0;">
-            <div style="width: 4rem; height: 4rem; background: rgba(0, 255, 65, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-              <i data-lucide="check-circle-2" style="color: var(--cyber-primary); width: 2rem; height: 2rem;"></i>
-            </div>
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Email Prepared!</h3>
-            <p style="color: var(--text-gray);">Your email client should have opened. If not, please contact me directly at benjaminpradheesh15@gmail.com</p>
-            <button onclick="location.reload()" style="margin-top: 2rem; background: none; border: none; color: var(--cyber-primary); cursor: pointer; text-decoration: underline;">Send another message</button>
-          </div>
-        `;
-        lucide.createIcons();
-      }, 1000);
-    });
-  }
+  
 });
 // Prevent right-click context menu
 window.addEventListener('contextmenu', function (e) {

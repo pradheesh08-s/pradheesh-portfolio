@@ -25,6 +25,26 @@
           <a href="#projects" class="nav-link">Projects</a>
           <a href="#cyber" class="nav-link">Cybersecurity</a>
           <a href="#contact" class="nav-link">Contact</a>
+          <div class="theme-editor" id="theme-editor">
+            <button id="theme-editor-toggle" class="theme-editor-toggle" type="button" aria-label="Open appearance settings">
+              <i data-lucide="sliders-horizontal"></i>
+              <span>Edit</span>
+            </button>
+            <div id="theme-editor-panel" class="theme-editor-panel" aria-hidden="true">
+              <p class="theme-editor-title">Appearance</p>
+              <div class="theme-mode-switch" role="group" aria-label="Theme mode">
+                <button type="button" class="theme-mode-btn" data-theme-mode="dark">Dark</button>
+                <button type="button" class="theme-mode-btn" data-theme-mode="light">Light</button>
+              </div>
+              <p class="theme-editor-subtitle">Accent</p>
+              <div class="theme-color-options">
+                <button type="button" class="theme-color-btn" data-accent="#00ff41" data-accent-rgb="0, 255, 65" style="--swatch: #00ff41;" aria-label="Green accent"></button>
+                <button type="button" class="theme-color-btn" data-accent="#38bdf8" data-accent-rgb="56, 189, 248" style="--swatch: #38bdf8;" aria-label="Blue accent"></button>
+                <button type="button" class="theme-color-btn" data-accent="#a78bfa" data-accent-rgb="167, 139, 250" style="--swatch: #a78bfa;" aria-label="Purple accent"></button>
+                <button type="button" class="theme-color-btn" data-accent="#f97316" data-accent-rgb="249, 115, 22" style="--swatch: #f97316;" aria-label="Orange accent"></button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <button class="menu-toggle">
@@ -184,7 +204,7 @@
                 <div style="width: 3rem; height: 3rem; background: rgba(255,255,255,0.05); border: 1px solid var(--cyber-border); border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i data-lucide="terminal" style="color: var(--cyber-primary);"></i></div>
                 <div>
                   <h4 style="margin-bottom: 0.25rem;">Tools</h4>
-                  <p style="font-size: 0.875rem;">Linux</p>
+                  <p style="font-size: 0.875rem;">Linux(Kali)</p>
                 </div>
               </div>
             </div>
@@ -223,17 +243,7 @@
                 <div><p style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">GitHub</p><p style="color: var(--text-white);">github.com/pradheesh08-s</p></div>
               </a>
             </div>
-          </div>
-          <div class="contact-form">
-            <form id="contact-form">
-              <div class="form-row">
-                <div class="form-group"><label>Name</label><input type="text" required placeholder="John Doe"></div>
-                <div class="form-group"><label>Email</label><input type="email" required placeholder="john@example.com"></div>
-              </div>
-              <div class="form-group"><label>Subject</label><input type="text" required placeholder="Project Inquiry"></div>
-              <div class="form-group"><label>Message</label><textarea rows="5" required placeholder="Your message here..."></textarea></div>
-              <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message <i data-lucide="mail" style="width: 1rem; vertical-align: middle; margin-left: 0.5rem;"></i></button>
-            </form>
+
           </div>
         </div>
       </div>
