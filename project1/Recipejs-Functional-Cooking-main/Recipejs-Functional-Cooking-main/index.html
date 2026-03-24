@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe- Functional Cooking Companion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="shell">
+            <p class="eyebrow">Recipe Management Dashboard</p>
+            <h1>Recipe- Functional Cooking Companion</h1>
+            <p class="subtitle">Browse, filter, and favorite recipes with a modern workspace layout.</p>
+        </div>
+    </header>
+
+    <main class="shell app-layout">
+        <aside class="panel controls" aria-label="Recipe controls">
+            <h2>Controls</h2>
+
+            <div class="search-wrap">
+                <label for="searchInput">Search Recipes</label>
+                <div class="search-row">
+                    <input id="searchInput" type="search" placeholder="Search title or description" aria-label="Search recipes">
+                    <button id="clearSearch" type="button">Clear</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Difficulty</h3>
+                <div class="filters">
+                    <button data-filter="all" type="button">All</button>
+                    <button data-filter="easy" type="button">Easy</button>
+                    <button data-filter="medium" type="button">Medium</button>
+                    <button data-filter="hard" type="button">Hard</button>
+                    <button data-filter="quick" type="button">Quick (&lt; 30 min)</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Sort</h3>
+                <div class="sorts">
+                    <button data-sort="name" type="button">Name (A–Z)</button>
+                    <button data-sort="time" type="button">Time (Fastest)</button>
+                    <button id="favoritesFilter" type="button">Favorites Only</button>
+                </div>
+            </div>
+
+            <button id="resetControls" class="reset-btn" type="button">Reset All Controls</button>
+            <p id="recipeCounter" class="recipe-counter" role="status" aria-live="polite"></p>
+        </aside>
+
+        <section class="results">
+            <div class="results-head">
+                <h2>Recipes</h2>
+            </div>
+            <div id="recipe-container" aria-live="polite"></div>
+        </section>
+    </main>
+    
+    <script src="app.js" defer></script>
+</body>
+</html>

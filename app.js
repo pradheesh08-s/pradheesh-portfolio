@@ -98,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Lucide Icons initialization
-  lucide.createIcons();
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
 
   // Navbar scroll animation
   let lastScrollY = window.scrollY;
@@ -106,6 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let ticking = false;
   function onScrollNav() {
     const currentScroll = window.scrollY;
+    if (!navbar) {
+      ticking = false;
+      return;
+    }
+
     if (currentScroll > 10) {
       navbar.classList.add('scrolled');
     } else {
@@ -130,23 +137,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    const icon = menuToggle.querySelector('i');
-    if (navLinks.classList.contains('active')) {
-      icon.setAttribute('data-lucide', 'x');
-    } else {
-      icon.setAttribute('data-lucide', 'menu');
-    }
-    lucide.createIcons();
-  });
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const icon = menuToggle.querySelector('i');
+      if (icon) {
+        if (navLinks.classList.contains('active')) {
+          icon.setAttribute('data-lucide', 'x');
+        } else {
+          icon.setAttribute('data-lucide', 'menu');
+        }
+      }
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+    });
+  }
 
   // Close menu when clicking a link
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
+      if (!navLinks || !menuToggle) {
+        return;
+      }
+
       navLinks.classList.remove('active');
-      menuToggle.querySelector('i').setAttribute('data-lucide', 'menu');
-      lucide.createIcons();
+      const menuIcon = menuToggle.querySelector('i');
+      if (menuIcon) {
+        menuIcon.setAttribute('data-lucide', 'menu');
+      }
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
     });
   });
 
