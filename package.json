@@ -9,13 +9,12 @@
     "preview": "vite preview"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "dependencies": {
-    "vite": "^6.4.1"
+    "vite": "^8.0.2"
   },
   "devDependencies": {
     "typescript": "~5.8.2"
   }
 }
-
