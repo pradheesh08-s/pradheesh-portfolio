@@ -91,6 +91,8 @@
   --nav-bg: rgba(10, 10, 11, 0.8);
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  --bubble-soft: rgba(var(--cyber-primary-rgb), 0.18);
+  --bubble-strong: rgba(var(--cyber-primary-rgb), 0.32);
 }
 
 body.light-mode {
@@ -410,6 +412,79 @@ nav.scrolled {
 
 .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Bubble Interaction */
+.interactive-bubble {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.28s ease, box-shadow 0.28s ease, background-color 0.28s ease;
+}
+
+.interactive-bubble::before {
+  content: '';
+  position: absolute;
+  inset: auto auto -70% -30%;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at center, var(--bubble-soft) 0%, rgba(var(--cyber-primary-rgb), 0.08) 35%, transparent 72%);
+  transform: scale(0.45);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.32s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.interactive-bubble:hover,
+.interactive-bubble:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(var(--cyber-primary-rgb), 0.4);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24), 0 0 0 1px rgba(var(--cyber-primary-rgb), 0.18) inset;
+}
+
+.interactive-bubble:hover::before,
+.interactive-bubble:focus-visible::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.interactive-bubble > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bubble-ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: radial-gradient(circle, var(--bubble-strong) 0%, rgba(var(--cyber-primary-rgb), 0.12) 55%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+  animation: bubbleRipple 0.65s ease-out forwards;
+}
+
+@keyframes bubbleRipple {
+  0% {
+    transform: scale(0);
+    opacity: 0.92;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+.contact-item {
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* Sections */

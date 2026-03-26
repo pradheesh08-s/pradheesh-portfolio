@@ -175,6 +175,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // Scroll Reveal Animation
   const revealElements = document.querySelectorAll('.reveal');
   const tagElements = document.querySelectorAll('.tag');
+
+  // Bubble interactions for buttons and key cards.
+  const bubbleTargets = document.querySelectorAll('.btn, .cyber-card, .project-card, .contact-item, .theme-editor-toggle, .theme-mode-btn, .theme-color-btn');
+  bubbleTargets.forEach((target) => {
+    target.classList.add('interactive-bubble');
+  });
+
+  const spawnRipple = (target, clientX, clientY) => {
+    const rect = target.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const ripple = document.createElement('span');
+    ripple.className = 'bubble-ripple';
+    ripple.style.width = `${size}px`;
+    ripple.style.height = `${size}px`;
+    ripple.style.left = `${clientX - rect.left - size / 2}px`;
+    ripple.style.top = `${clientY - rect.top - size / 2}px`;
+
+    target.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+  };
+
+  bubbleTargets.forEach((target) => {
+    target.addEventListener('pointerdown', (event) => {
+      if (event.button !== undefined && event.button !== 0) {
+        return;
+      }
+      spawnRipple(target, event.clientX, event.clientY);
+    });
+  });
   
   const revealOnScroll = () => {
     const windowHeight = window.innerHeight;
