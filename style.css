@@ -428,6 +428,7 @@ nav.scrolled {
 /* Sections */
 section {
   padding: 6rem 0;
+  scroll-margin-top: 5.5rem;
 }
 
 .section-title {
@@ -497,28 +498,33 @@ section {
 
 .about-image {
   position: relative;
+  justify-self: center;
+  align-self: center;
 }
 
 .img-container {
-  aspect-ratio: 3/4;
+  width: min(100%, 340px);
+  aspect-ratio: 4 / 5;
   border-radius: 1rem;
   overflow: hidden;
   border: 1px solid var(--cyber-border);
   background: var(--cyber-card);
   padding: 0.5rem;
+  margin: 0 auto;
 }
 
 .img-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   border-radius: 0.75rem;
-  filter: grayscale(100%);
-  transition: 0.5s;
+  filter: none;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .img-container img:hover {
-  filter: grayscale(0%);
+  filter: none;
 }
 
 .focus-badge {
@@ -538,8 +544,8 @@ section {
 /* Skills */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.1rem;
 }
 
 .cyber-card {
@@ -574,8 +580,8 @@ section {
 /* Projects */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.35rem;
 }
 
 .project-card {
@@ -743,6 +749,70 @@ input:focus, textarea:focus {
   border-color: var(--cyber-primary);
 }
 
+/* Tools Grid */
+.tools-section {
+  color: var(--text-white);
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.tool-card {
+  background: var(--cyber-card);
+  border: 1px solid var(--cyber-border);
+  border-radius: 1rem;
+  padding: 1.1rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(var(--cyber-primary-rgb), 0.05) inset;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--cyber-primary-rgb), 0.38);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3), 0 0 24px rgba(var(--cyber-primary-rgb), 0.14);
+}
+
+.tool-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--cyber-primary-rgb), 0.08);
+  border: 1px solid rgba(var(--cyber-primary-rgb), 0.18);
+  margin-bottom: 1rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.tool-icon i {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--cyber-primary);
+}
+
+.tool-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tool-card p {
+  font-size: 0.88rem;
+  color: var(--text-gray);
+  line-height: 1.6;
+}
+
+#Tools .section-title {
+  color: var(--text-white);
+}
+
+#Tools > .container > div:first-child p {
+  color: var(--text-gray);
+}
+
 /* Footer */
 footer {
   padding: 4rem 0;
@@ -825,6 +895,10 @@ footer .container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .tools-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .focus-badge {
     right: -0.75rem;
     bottom: -0.75rem;
@@ -894,6 +968,7 @@ footer .container {
 
   .skills-grid,
   .projects-grid,
+  .tools-grid,
   .stats-grid,
   .form-row {
     grid-template-columns: 1fr;

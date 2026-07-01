@@ -79,24 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Smooth animated scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href.length > 1 && document.querySelector(href)) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        const nav = document.querySelector('nav');
-        const navHeight = nav ? nav.offsetHeight : 0;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-
   // Lucide Icons initialization
   if (window.lucide && typeof window.lucide.createIcons === 'function') {
     window.lucide.createIcons();
@@ -133,6 +115,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  let lastPointerY = window.innerHeight;
+  document.addEventListener('mousemove', (event) => {
+    if (!navbar) {
+      return;
+    }
+
+    const movingUpward = event.clientY < lastPointerY;
+    const nearTopEdge = event.clientY <= 120;
+
+    if (movingUpward && nearTopEdge && window.scrollY > 100) {
+      navbar.classList.remove('hide');
+    }
+
+    lastPointerY = event.clientY;
+  });
+
   // Mobile Menu Toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
@@ -156,9 +154,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Close menu when clicking a link
   document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (event) => {
       if (!navLinks || !menuToggle) {
         return;
+      }
+
+      const href = link.getAttribute('href');
+      const target = href && href.length > 1 ? document.querySelector(href) : null;
+
+      if (target) {
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
       navLinks.classList.remove('active');

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pradheesh S | Portfolio</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./style.css">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
@@ -23,7 +23,7 @@
           <a href="#about" class="nav-link">About</a>
           <a href="#skills" class="nav-link">Skills</a>
           <a href="#projects" class="nav-link">Projects</a>
-          <a href="#cyber" class="nav-link">Cybersecurity</a>
+          <a href="#cyber" class="nav-link">Security Journey</a>
           <a href="#contact" class="nav-link">Contact</a>
         </div>
 
@@ -99,7 +99,6 @@
       <div class="container">
         <div style="text-align: center; margin-bottom: 4rem;">
           <h2 class="section-title" style="justify-content: center;">Technical Arsenal</h2>
-          <p>The tools and technologies I use to bring ideas to life securely.</p>
         </div>
         <div class="skills-grid">
           <div class="cyber-card">
@@ -110,6 +109,7 @@
               <li><i data-lucide="chevron-right" style="color: var(--cyber-primary); width: 1rem;"></i> CSS3</li>
               <li><i data-lucide="chevron-right" style="color: var(--cyber-primary); width: 1rem;"></i> JavaScript</li>
               <li><i data-lucide="chevron-right" style="color: var(--cyber-primary); width: 1rem;"></i> Basics of Java</li>
+               <li><i data-lucide="chevron-right" style="color: var(--cyber-primary); width: 1rem;"></i>React</li>
             </ul>
           </div>
           <div class="cyber-card">
@@ -119,6 +119,7 @@
               <li><i data-lucide="chevron-right" style="color: var(--cyber-primary); width: 1rem;"></i> Node.js / Express</li>
               <li><i data-lucide="chevron-right" style="color: var(--cyber-primary); width: 1rem;"></i> Git / GitHub</li>
               <li><i data-lucide="chevron-right" style="color: var(--cyber-primary); width: 1rem;"></i> Basic SQL</li>
+               <li><i data-lucide="chevron-right" style="color: var(--cyber-primary); width: 1rem;"></i>Python</li>
             </ul>
           </div>
           <div class="cyber-card">
@@ -132,7 +133,57 @@
         </div>
       </div>
     </section>
-
+    <!-- Tools Section -->
+    <section id="Tools" class="reveal">
+       <div class="container">
+        <div style="text-align: center; margin-bottom: 4rem;">
+          <h2 class="section-title" style="justify-content: center;">Tools</h2>
+          <p>The tools and technologies I use to bring ideas to life securely.</p>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-icon"><i data-lucide="code-2"></i></div>
+            <h3>VS Code</h3>
+            <p>Fast editing, extensions, and daily development workflow.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon"><i data-lucide="git-branch"></i></div>
+            <h3>Git & GitHub</h3>
+            <p>Version control, collaboration, and project history management.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon"><i data-lucide="palette"></i></div>
+            <h3>Figma</h3>
+            <p>UI planning, layout previews, and design collaboration.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon"><i data-lucide="send"></i></div>
+            <h3>Postman</h3>
+            <p>API testing, request validation, and endpoint debugging.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon"><i data-lucide="container"></i></div>
+            <h3>Docker</h3>
+            <p>Portable environments and containerized application setup.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon"><i data-lucide="terminal"></i></div>
+            <h3>Linux Terminal</h3>
+            <p>Command-line workflows for system and security tasks.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon"><i data-lucide="box"></i></div>
+            <h3>Webpack</h3>
+            <p>Bundling assets and organizing frontend builds.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon"><i data-lucide="package"></i></div>
+            <h3>NPM</h3>
+            <p>Dependency management and JavaScript package workflows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- Projects Section -->
     <section id="projects" class="reveal">
       <div class="container">
@@ -159,7 +210,7 @@
           <div class="project-card">
             <div class="project-img"><img src="https://i.ibb.co/zhS1dMwJ/Screenshot-2026-02-27-232612.png" alt="Portfolio"></div>
             <div class="project-info">
-              <h3>Portfolio</h3>
+              <h3>Squad Portfolio</h3>
               <p style="font-size: 0.875rem; margin-top: 0.5rem;">A clean, responsive portfolio website built with modern CSS techniques.</p>
               <div class="project-tags">
                 <span class="tag">index.html</span><span class="tag">style.css</span><span class="tag">app.js</span>
@@ -268,11 +319,11 @@
       <div class="container">
         <div class="logo">
         </div>
-        <p style="font-size: 0.875rem;">© <span id="year"></span> Pradheesh S.All rights reserved</p>
+        <p style="font-size: 0.875rem;">© <span id="year"></span> Pradheesh S. All rights reserved</p>
       </div>
     </footer>
 
-    <script type="module" src="/app.js"></script>
+    <script type="module" src="./app.js"></script>
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </body>
 </html>
