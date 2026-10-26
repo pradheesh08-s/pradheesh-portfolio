@@ -33,9 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (themeEditor && themeEditorToggle && themeEditorPanel) {
-    const savedMode = localStorage.getItem('themeMode') || 'light';
-    const savedAccent = localStorage.getItem('accentColor');
-    const savedAccentRgb = localStorage.getItem('accentRgb');
+    let savedMode = localStorage.getItem('themeMode');
+    let savedAccent = localStorage.getItem('accentColor');
+    let savedAccentRgb = localStorage.getItem('accentRgb');
+
+    if (savedMode === 'dark' && savedAccent === '#00ff41') {
+      savedMode = 'light';
+      savedAccent = null;
+      savedAccentRgb = null;
+    }
+
+    savedMode = savedMode || 'light';
 
     applyThemeMode(savedMode);
 
