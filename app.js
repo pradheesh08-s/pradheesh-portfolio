@@ -33,13 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   if (themeEditor && themeEditorToggle && themeEditorPanel) {
-    const savedMode = localStorage.getItem('themeMode') || 'dark';
+    const savedMode = localStorage.getItem('themeMode') || 'light';
     const savedAccent = localStorage.getItem('accentColor');
     const savedAccentRgb = localStorage.getItem('accentRgb');
 
     applyThemeMode(savedMode);
 
-    const defaultAccentButton = document.querySelector('.theme-color-btn[data-accent="#00ff41"]') || themeColorButtons[0];
+    const defaultAccentButton = document.querySelector('.theme-color-btn[data-accent="#38bdf8"]') || themeColorButtons[0];
     if (savedAccent && savedAccentRgb) {
       applyAccentColor(savedAccent, savedAccentRgb);
     } else if (defaultAccentButton) {
